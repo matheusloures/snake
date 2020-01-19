@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Snaaaaaaaake
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="game-container">
+    <div class="game-header">
+      <div class="score-block">
+        <h3 class="score" [ngClass]="{'new-best-score': newBestScore}">Score: {{score}}</h3>
+        <h3 class="best-score" [ngClass]="{'new-best-score': newBestScore}">Best Score: {{best_score}}</h3>
+      </div>
+    </div>
+    <div class="row" *ngFor="let column of board; let i = index;">
+      <div class="column" [ngStyle]="{'background-color': setColors(i, j)}" *ngFor="let row of column; let j = index"></div>
+    </div>
+    <div class="start-button" [ngClass]="{'disable-clicks': gameStarted}" (click)="showMenu()">Start Game</div>
+    <div class="new-game-menu" *ngIf="showMenuChecker">
+      <span class="new-game-menu-label">Select Mode</span>
+      <div class="start-button new-game-button" (click)="newGame(mode)" *ngFor="let mode of getKeys(all_modes)">{{all_modes[mode]}}</div>
+    </div>
+  </div>
+</ion-content>
+
+
